@@ -1,0 +1,42 @@
+package com.springbootapp.springproject;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+
+@RestController
+class EmployeeController {
+
+    @Autowired
+    private EmployeeRepository repository;
+
+    @GetMapping("/employees")
+    Iterable<EmployeeData> all(){
+        return repository.findAll();
+    }
+
+    @GetMapping("/employees/{id}")
+    EmployeeData getById(@PathVariable Long id){
+        return repository.findById(id).orElseThrow();
+    }
+
+    @PostMapping("/employees")
+    void createEmp(@RequestBody EmployeeData data){
+        repository.save(data);
+    }
+
+    @PutMapping("/employees/{id}")
+    void updateEmp(@PathVariable Long id, @RequestBody EmployeeData data){
+        repository.save(data);
+    }
+
+    @DeleteMapping("/employees/{id}")
+    void deleteData(@PathVariable Long id){
+        repository.deleteById(id);
+    }
+
+    @DeleteMapping("/employees/")
+    void deleteAllData(@RequestBody EmployeeData data){
+        repository.delete(data);
+    }
+}
