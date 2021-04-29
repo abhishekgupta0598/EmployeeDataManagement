@@ -1,9 +1,0 @@
-package com.springbootapp.springproject;
-
-
-
-import org.springframework.data.repository.CrudRepository;
-
-public interface EmployeeRepository extends CrudRepository<EmployeeData, Long> {
-
-}
